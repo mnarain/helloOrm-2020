@@ -10,7 +10,13 @@ public class Application {
     public static void main(String[] args) {
         PersoonDAO persoonDAO = new PersoonDAO(JPAConfiguration.getEntityManager());
         List<Persoon> persoonList = persoonDAO.retrievePersoonList();
+
         persoonList.stream().forEach(System.out::println);
+
+/*        for (Persoon persoon : persoonList) {
+            System.out.println(persoon);
+        }*/
+
         JPAConfiguration.shutdown();
     }
 }
