@@ -5,6 +5,7 @@ import sr.unasat.orm.hello.entities.Persoon;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class PersoonDAO {
@@ -17,10 +18,10 @@ public class PersoonDAO {
     public List<Persoon> retrievePersoonList() {
         entityManager.getTransaction().begin();
 
-/*        String sql = "select * from Persoon";
+      /*  String sql = "select * from Persoon";
         Query query = entityManager.createNativeQuery(sql);
-        List<Persoon> persoonList = query.getResultList();*/
-
+        List<Persoon> persoonList = query.getResultList();
+*/
         String jpql = "select s from Persoon s";
         TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
         List<Persoon> persoonList = query.getResultList();
@@ -28,5 +29,7 @@ public class PersoonDAO {
         entityManager.getTransaction().commit();
         return persoonList;
     }
+
+
 
 }

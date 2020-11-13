@@ -50,4 +50,14 @@ public class Persoon {
     public void setGeboortedatum(LocalDate geboortedatum) {
         this.geboortedatum = geboortedatum;
     }
+
+    @Override
+    public String toString() {
+        return "Persoon{" +
+                "id=" + id +
+                ", naam='" + naam + '\'' +
+                ", adres='" + adres + '\'' +
+                ", geboortedatum=" + geboortedatum +
+                '}';
+    }
 }
