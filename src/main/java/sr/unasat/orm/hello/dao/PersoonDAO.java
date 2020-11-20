@@ -28,10 +28,36 @@ public class PersoonDAO {
         entityManager.getTransaction().begin();
         String jpql = "select s from Persoon s where s.naam = :naam";
         TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
-        query.setParameter("naam", name);
-        Persoon persoon = query.getSingleResult();
+        Persoon persoon = query.setParameter("naam", name).getSingleResult();
         entityManager.getTransaction().commit();
         return persoon;
+    }
+
+    public Persoon insertPersoon(Persoon persoon) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(persoon);
+        entityManager.getTransaction().commit();
+        return persoon;
+    }
+
+    public int updatePersoonAdres(Persoon persoon) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("UPDATE Persoon p SET p.adres = :adres where p.id = :id");
+        query.setParameter("id", persoon.getId());
+        int rowsUpdated = query.executeUpdate();
+        System.out.println("entities Updated: " + rowsUpdated);
+        entityManager.getTransaction().commit();
+        return rowsUpdated;
+    }
+
+    public int deletePersoonByName(String name) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("DELETE FROM Persoon p WHERE  p.naam = :name");
+        query.setParameter("name", name);
+        int rowsDeleted = query.executeUpdate();
+        System.out.println("entities deleted: " + rowsDeleted);
+        entityManager.getTransaction().commit();
+        return rowsDeleted;
     }
 
 }
