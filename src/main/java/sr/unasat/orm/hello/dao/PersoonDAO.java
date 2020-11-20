@@ -26,9 +26,11 @@ public class PersoonDAO {
 
     public Persoon findByName(String name) {
         entityManager.getTransaction().begin();
-        String jpql = "select s from Persoon s where s.naam = :naam";
+        String jpql = "select s from Persoon s where s.naam = :name";
+        //String jpql = "select s from Persoon s where s.naam = ?1";
         TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
-        Persoon persoon = query.setParameter("naam", name).getSingleResult();
+        Persoon persoon = query.setParameter("name", name).getSingleResult();
+        //Persoon persoon = query.setParameter(1, name).getSingleResult();
         entityManager.getTransaction().commit();
         return persoon;
     }
@@ -44,6 +46,7 @@ public class PersoonDAO {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("UPDATE Persoon p SET p.adres = :adres where p.id = :id");
         query.setParameter("id", persoon.getId());
+        query.setParameter("adres", persoon.getAdres());
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
