@@ -29,7 +29,7 @@ public class Application {
         //UPDATE ONE
         foundPersoon.setAdres("UCLA Avenue");
         persoonDAO.updatePersoonAdres(foundPersoon);
-        Persoon persoon = persoonDAO.findByName("Tesla 6");
+        Persoon persoon = persoonDAO.findByName("Micheal Jordan");
         System.out.println(persoon);
 
         //DELETE ONE
