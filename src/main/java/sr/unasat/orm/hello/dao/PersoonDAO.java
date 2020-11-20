@@ -17,19 +17,21 @@ public class PersoonDAO {
 
     public List<Persoon> retrievePersoonList() {
         entityManager.getTransaction().begin();
-
-      /*  String sql = "select * from Persoon";
-        Query query = entityManager.createNativeQuery(sql);
-        List<Persoon> persoonList = query.getResultList();
-*/
         String jpql = "select s from Persoon s";
         TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
         List<Persoon> persoonList = query.getResultList();
-
         entityManager.getTransaction().commit();
         return persoonList;
     }
 
-
+    public Persoon findByName(String name) {
+        entityManager.getTransaction().begin();
+        String jpql = "select s from Persoon s where s.naam = :naam";
+        TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
+        query.setParameter("naam", name);
+        Persoon persoon = query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return persoon;
+    }
 
 }

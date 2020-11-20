@@ -13,6 +13,8 @@ public class Application {
 
         persoonList.stream().forEach(System.out::println);
 
+        Persoon persoon = persoonDAO.findByName("test");
+        System.out.println(persoon);
 /*        for (Persoon persoon : persoonList) {
             System.out.println(persoon);
         }*/
