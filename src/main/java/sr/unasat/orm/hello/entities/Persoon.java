@@ -2,6 +2,7 @@ package sr.unasat.orm.hello.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Persoon {
@@ -13,9 +14,6 @@ public class Persoon {
     private String adres;
     private LocalDate geboortedatum;
 
-    public Persoon() {
-    }
-
     public Persoon(Long id, String naam, String adres, LocalDate geboortedatum) {
         this.id = id;
         this.naam = naam;
@@ -23,8 +21,16 @@ public class Persoon {
         this.geboortedatum = geboortedatum;
     }
 
+    public Persoon() {
+
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNaam() {
@@ -50,6 +56,7 @@ public class Persoon {
     public void setGeboortedatum(LocalDate geboortedatum) {
         this.geboortedatum = geboortedatum;
     }
+
 
     @Override
     public String toString() {
