@@ -2,6 +2,8 @@ package sr.unasat.orm.hello.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -13,6 +15,8 @@ public class Persoon {
     private String naam;
     private String adres;
     private LocalDate geboortedatum;
+    @OneToMany(mappedBy = "eigenaar")
+    List<Onderneming> ondernemingList= new ArrayList<>();
 
     public Persoon(Long id, String naam, String adres, LocalDate geboortedatum) {
         this.id = id;
@@ -21,8 +25,15 @@ public class Persoon {
         this.geboortedatum = geboortedatum;
     }
 
-    public Persoon() {
+    public Persoon(Long id, String naam, String adres, LocalDate geboortedatum, List<Onderneming> ondernemingList) {
+        this.id = id;
+        this.naam = naam;
+        this.adres = adres;
+        this.geboortedatum = geboortedatum;
+        this.ondernemingList = ondernemingList;
+    }
 
+    public Persoon() {
     }
 
     public Long getId() {
@@ -57,6 +68,13 @@ public class Persoon {
         this.geboortedatum = geboortedatum;
     }
 
+    public List<Onderneming> getOndernemingList() {
+        return ondernemingList;
+    }
+
+    public void setOndernemingList(List<Onderneming> ondernemingList) {
+        this.ondernemingList = ondernemingList;
+    }
 
     @Override
     public String toString() {
@@ -65,6 +83,7 @@ public class Persoon {
                 ", naam='" + naam + '\'' +
                 ", adres='" + adres + '\'' +
                 ", geboortedatum=" + geboortedatum +
+                ", ondernemingList=" + ondernemingList +
                 '}';
     }
 }

@@ -26,7 +26,7 @@ public class PersoonDAO {
 
     public Persoon findByName(String name) {
         entityManager.getTransaction().begin();
-        String jpql = "select s from Persoon s where s.naam = :name";
+        String jpql = "select s from Persoon s  where s.naam = :name";
         //String jpql = "select s from Persoon s where s.naam = ?1";
         TypedQuery<Persoon> query = entityManager.createQuery(jpql, Persoon.class);
         Persoon persoon = query.setParameter("name", name).getSingleResult();

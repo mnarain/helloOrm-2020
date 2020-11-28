@@ -15,7 +15,7 @@ public class Onderneming {
     private String kkfnummer;
     @ManyToOne
     @JoinColumn(name = "persoon_id", nullable = false)
-    Persoon eigenaar;
+    private Persoon eigenaar;
 
     public Onderneming() {
     }
@@ -33,24 +33,48 @@ public class Onderneming {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNaam() {
         return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
     }
 
     public String getAdres() {
         return adres;
     }
 
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
     public LocalDate getOprichtingsdatum() {
         return oprichtingsdatum;
+    }
+
+    public void setOprichtingsdatum(LocalDate oprichtingsdatum) {
+        this.oprichtingsdatum = oprichtingsdatum;
     }
 
     public String getKkfnummer() {
         return kkfnummer;
     }
 
+    public void setKkfnummer(String kkfnummer) {
+        this.kkfnummer = kkfnummer;
+    }
+
     public Persoon getEigenaar() {
         return eigenaar;
+    }
+
+    public void setEigenaar(Persoon eigenaar) {
+        this.eigenaar = eigenaar;
     }
 
     @Override
